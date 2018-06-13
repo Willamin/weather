@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Weather</title>
-  <link rel="apple-touch-icon-precomposed" href="path/to/favicon-152.png">
+  <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
 </head>
 <body>
 <div><h1>Chattanooga Forecast</h1></div>
@@ -27,6 +27,37 @@
     font-weight: 600;
     margin: 0;
   }
+
+  #icon {
+    display: none;
+  }
 </style>
+
+<script src="/skycons.js"></script>
+<canvas id="icon" width="128" height="128"></canvas>
+<script>
+  var skycons = new Skycons();
+  skycons.add("icon", Skycons.PARTLY_CLOUDY_DAY);
+  skycons.play();
+</script>
+
+<script>
+var intervalID = window.setInterval(myCallback, 1);
+
+function myCallback() {
+  var dyn = document.getElementById('dynamic-favion');
+  if (dyn) {
+    dyn.remove();
+  }
+
+  var c = document.getElementById('icon');
+  var link = document.createElement('link');
+  link.id = 'dynamic-favion';
+  link.type = 'image/x-icon';
+  link.rel = 'shortcut icon';
+  link.href = c.toDataURL();
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
+</script>
 </body>
 </html>
